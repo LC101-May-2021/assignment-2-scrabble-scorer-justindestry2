@@ -132,12 +132,12 @@ function transform(oldPointStructure) {
       console.log(oldPointStructure[key][i])
     }
   }
+  return console.log(oldPointStructure[key][i],key)
 };
 
 let newPointStructure = {
   newPointStructure: function transform(oldPointStructure){
-    return 
-  }
+    }
 }
 
 function runProgram() {
