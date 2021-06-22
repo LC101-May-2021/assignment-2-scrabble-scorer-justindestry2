@@ -19,7 +19,6 @@ const oldPointStructure = {
   10: ['Q', 'Z']
 };
 
-let scrabbleScore = "";
 
 let word = "";
 let prompt = "";
@@ -31,18 +30,6 @@ Enter a word to score: `);
 
 };
 
-function scrabbleScorer(word){
-  word = word.toUpperCase();
-  let letterPoints = 0;
-  let score = 0
-
-  for (let i = 0; i < word.length; i++){
-    for (const pointValue in newPointStructure)
-
-    score += Number(pointValue)
-  }
-  return console.log(`Score for ${userWord}: ${letterPoints}`); 
-}
 
 function oldScrabbleScorer(word) {
 	word = word.toUpperCase();
@@ -51,7 +38,7 @@ function oldScrabbleScorer(word) {
 
 	for (let i = 0; i < word.length; i++) {
  
-	  for (const pointValue in oldPointStructure) {
+	  for (let pointValue in oldPointStructure) {
  
 		 if (oldPointStructure[pointValue].includes(word[i])) {
 			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
@@ -125,24 +112,43 @@ return
 }
 
 
-
 function transform(oldPointStructure) {
   for (key in oldPointStructure){
     for (let i = 0; i < oldPointStructure[key].length;i++){
-      console.log(oldPointStructure[key][i])
+      console.log(oldPointStructure[key][i],key)
+      newPointStructure = oldPointStructure[key][i],key
     }
   }
-  return console.log(oldPointStructure[key][i],key)
+  
+  return newPointStructure
 };
 
-let newPointStructure = {
-  newPointStructure: function transform(oldPointStructure){
-    }
+newPointStructure = transform(oldPointStructure);
+    
+
+let scrabbleScore = newPointStructure;
+
+function scrabbleScorer(word){
+  word = word.toUpperCase();
+  let scrabbleScore = 0;
+  let letterPoints = 0;
+
+  for (let i = 0; i < word.length; i++){
+    for (let letterPoints in newPointStructure)
+
+      if(newPointStructure[letterPoints].includes(word[i])){
+        letterPoints += 1
+      }
+    letterPoints += Number(scrabbleScore)
+    console.log(scrabbleScore);
+  }
+  return console.log(`Score for '${userWord}': ${scrabbleScore}`); 
 }
 
 function runProgram() {
    initialPrompt();
-  //  transform(oldPointStructure);
+   transform(oldPointStructure);
+  // scrabbleScorer(word);
   //  oldScrabbleScorer(userWord);
   //  simpleScorer(userWord);
   //  vowelBonusScorer(userWord);
